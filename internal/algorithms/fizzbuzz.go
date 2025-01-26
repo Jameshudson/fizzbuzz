@@ -1,5 +1,7 @@
 package algorithms
 
+import "fmt"
+
 type FizzBuzz interface {
 	Generate()
 }
@@ -15,15 +17,22 @@ func NewFizzBuzz() FizzBuzz {
 type moduloFizzBuzz struct{}
 
 func (f *moduloFizzBuzz) Generate() {
+	fizzCount, buzzCount := 0, 0
 	for i := 1; i <= 100; i++ {
-		if i%3 == 0 && i%5 == 0 {
-			println("FizzBuzz")
-		} else if i%3 == 0 {
-			println("Fizz")
-		} else if i%5 == 0 {
-			println("Buzz")
+		fizzCount++
+		buzzCount++
+		if fizzCount == 3 && buzzCount == 5 {
+			fmt.Println("FizzBuzz")
+			fizzCount = 0
+			buzzCount = 0
+		} else if fizzCount == 3 {
+			fmt.Println("Fizz")
+			fizzCount = 0
+		} else if buzzCount == 5 {
+			fmt.Println("Buzz")
+			buzzCount = 0
 		} else {
-			println(i)
+			fmt.Println(i)
 		}
 	}
 }
@@ -33,13 +42,13 @@ type fizzBuzz struct{}
 func (f *fizzBuzz) Generate() {
 	for i := 1; i <= 100; i++ {
 		if i%15 == 0 {
-			println("FizzBuzz")
+			fmt.Println("FizzBuzz")
 		} else if i%3 == 0 {
-			println("Fizz")
+			fmt.Println("Fizz")
 		} else if i%5 == 0 {
-			println("Buzz")
+			fmt.Println("Buzz")
 		} else {
-			println(i)
+			fmt.Println(i)
 		}
 	}
 }
