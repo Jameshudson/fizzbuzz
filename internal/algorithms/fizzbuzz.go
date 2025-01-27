@@ -6,17 +6,17 @@ type FizzBuzz interface {
 	Generate()
 }
 
+func NewNonModuloFizzBuzz() FizzBuzz {
+	return &nonModuloFizzBuzz{}
+}
+
 func NewModuloFizzBuzz() FizzBuzz {
 	return &moduloFizzBuzz{}
 }
 
-func NewFizzBuzz() FizzBuzz {
-	return &fizzBuzz{}
-}
+type nonModuloFizzBuzz struct{}
 
-type moduloFizzBuzz struct{}
-
-func (f *moduloFizzBuzz) Generate() {
+func (f *nonModuloFizzBuzz) Generate() {
 	fizzCount, buzzCount := 0, 0
 	for i := 1; i <= 100; i++ {
 		fizzCount++
@@ -37,9 +37,9 @@ func (f *moduloFizzBuzz) Generate() {
 	}
 }
 
-type fizzBuzz struct{}
+type moduloFizzBuzz struct{}
 
-func (f *fizzBuzz) Generate() {
+func (f *moduloFizzBuzz) Generate() {
 	for i := 1; i <= 100; i++ {
 		if i%15 == 0 {
 			fmt.Println("FizzBuzz")
